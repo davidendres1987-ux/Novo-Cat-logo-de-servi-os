@@ -1,1 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços Previdenciários - Dr. David Endres</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #8D6E63;
+            --color-secondary: #D7CCC8;
+            --color-accent: #5D4037;
+            --color-background: #F9F5F0;
+            --color-card: #FFFFFF;
+            --color-text: #4E342E;
+            --color-light-text: #795548;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--color-background) 0%, #f5eee5 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: var(--color-card);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(93, 64, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin: 40px 0 20px;
+            padding-left: 15px;
+            border-left: 5px solid var(--color-primary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .service-card {
+            background: var(--color-card);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(93, 64, 55, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(93, 64, 55, 0.15);
+        }
+        
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            background: var(--color-secondary);
+            border-radius: 0 0 0 70px;
+            opacity: 0.7;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+        }
+        
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 15px 0;
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(141, 110, 99, 0.1);
+            border-radius: 10px;
+        }
+        
+        .service-description {
+            color: var(--color-light-text);
+            font-size: 0.95rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--color-secondary);
+        }
+        
+        .info-bubble {
+            background: var(--color-card);
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(93, 64, 55, 0.08);
+            position: relative;
+        }
+        
+        .info-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 40px;
+            width: 30px;
+            height: 30px;
+            background: var(--color-card);
+            transform: rotate(45deg);
+            box-shadow: 4px 4px 10px rgba(93, 64, 55, 0.08);
+        }
+        
+        .info-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title i {
+            margin-right: 10px;
+            color: var(--color-primary);
+        }
+        
+        .footer-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-light-text);
+            margin-top: 50px;
+            padding: 20px;
+            background: var(--color-card);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(93, 64, 55, 0.05);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(141, 110, 99, 0.2) 0%, rgba(141, 110, 99, 0) 100%);
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .contact-section {
+            background: var(--color-card);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 10px 30px rgba(93, 64, 55, 0.1);
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--color-primary);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 250px;
+            padding: 20px;
+            background: rgba(141, 110, 99, 0.05);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+        
+        .instagram-handle {
+            color: #E1306C;
+            font-weight: 600;
+        }
+        
+        .share-section {
+            background: var(--color-card);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(93, 64, 55, 0.08);
+        }
+        
+        .share-title {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            background: var(--color-accent);
+            transform: translateY(-2px);
+        }
+        
+        .share-btn i {
+            margin-right: 8px;
+        }
+        
+        .whatsapp { background: #25D366; }
+        .email { background: #EA4335; }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-bubble::after {
+                left: 30px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-btn {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SERVIÇOS PREVIDENCIÁRIOS</h1>
+            <p>Soluções especializadas para garantir seus direitos</p>
+        </header>
+        
+        <div class="share-section">
+            <h3 class="share-title">Compartilhe este catálogo</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn whatsapp" id="whatsapp-share">
+                    <i class="fab fa-whatsapp"></i> Compartilhar no WhatsApp
+                </a>
+                <a href="#" class="share-btn email" id="email-share">
+                    <i class="far fa-envelope"></i> Enviar por E-mail
+                </a>
+            </div>
+        </div>
+        
+        <h2>Nossos Serviços</h2>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="service-name">Cálculo de Aposentadoria</div>
+                <div class="service-price">R$ 200,00</div>
+                <div class="service-description">
+                    Conferência de carta de concessão; análise do cálculo de liquidação ou elaboração do cálculo de liquidação para execução invertida.
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="service-name">Consultoria para Planejamento Previdenciário</div>
+                <div class="service-price">R$ 800,00</div>
+                <div class="service-description">
+                    Análise da atual possibilidade de aposentadoria e projeção de contribuições para melhor aposentadoria futura. Apuração de investimento e retorno.
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="service-name">Análise para Possíveis Revisões</div>
+                <div class="service-price">R$ 200,00</div>
+                <div class="service-description">
+                    Revisões com base nos termos em discussão (Revisão por Erro de Cálculo; Inclusão de Tempo Especial; Revisão das Atividades Concomitantes; Revisão por Reclamação Trabalhista).
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="service-name">Confecção de Peças Processuais</div>
+                <div class="service-price">R$ 200,00</div>
+                <div class="service-description">
+                    Réplica, petições de defesa, recurso de apelação ou contrarrazões.
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="service-name">Confecção de Inicial</div>
+                <div class="service-price">R$ 250,00</div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <div class="service-name">Comparecimento em Audiência</div>
+                <div class="service-price">R$ 350,00</div>
+            </div>
+        </div>
+        
+        <div class="info-bubble">
+            <div class="info-title">
+                <i class="far fa-clock"></i> PRAZOS
+            </div>
+            <p><span class="highlight">Padrão:</span> 3 a 5 dias úteis, conforme a complexidade.</p>
+            <p><span class="highlight">Urgente:</span> 24 a 48 horas, com acréscimo de 40% sobre o valor.</p>
+        </div>
+        
+        <div class="info-bubble">
+            <div class="info-title">
+                <i class="fas fa-box-open"></i> PACOTES MENSAIS
+            </div>
+            <p>A partir de 5 peças por mês, consulte condições e valores especiais.</p>
+        </div>
+        
+        <div class="info-bubble">
+            <div class="info-title">
+                <i class="fas fa-hands-helping"></i> ACOMPANHAMENTO PROCESSUAL
+            </div>
+            <p>Atuação completa no processo com valores negociados individualmente.</p>
+        </div>
+        
+        <div class="contact-section">
+            <h2 class="contact-title">Entre em Contato</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="instagram-handle">@adv.david_endres</span>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="far fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        davidendres1987@gmail.com
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        51 99777-0147
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            *Para todos os casos é necessário acesso aos dados, tais como processo na íntegra, chave do processo, senha do GOV e documentos pertinentes.
+        </div>
+    </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.querySelector('.service-icon').style.transform = 'scale(1.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.querySelector('.service-icon').style.transform = 'scale(1)';
+                });
+            });
+            
+            document.getElementById('whatsapp-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                const text = "Confira o catálogo de serviços previdenciários do Dr. David Endres";
+                const url = window.location.href;
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+            });
+            
+            document.getElementById('email-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                const subject = "Catálogo de Serviços Previdenciários - Dr. David Endres";
+                const body = "Olá,\n\nConheça os serviços previdenciários do Dr. David Endres:\n\n" + window.location.href;
+                window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+        });
+    </script>
+</body>
+</html>
